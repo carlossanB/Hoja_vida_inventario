@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Home, Plus, Sun, Moon } from 'lucide-react';
+import LogoAnimado from './LogoAnimado';
 
 function Layout({ children }) {
   const location = useLocation();
@@ -36,25 +37,13 @@ function Layout({ children }) {
           <div className="flex items-center justify-between min-h-[4.25rem] sm:min-h-[4.75rem] py-2.5 sm:py-3 gap-3">
             
             {/* Logo y Nombre — Aumentado y Responsive */}
-            <Link to="/" className="flex items-center gap-3 sm:gap-3.5 group shrink-0">
-              <div className="p-1.5 rounded-xl bg-blue-500/10 border border-blue-500/20 group-hover:border-blue-500/40 transition-all duration-200">
-                <img 
-                 
-                  src="/logo.png" 
-                  alt="Logo Tecmovil" 
-                  className="w-8 h-8 sm:w-10 sm:h-10 md:w-11 md:h-11 object-contain transition-transform duration-200 group-hover:scale-105" 
-                />
-              </div>
-              <div className="leading-tight">
-                <span className="text-[var(--color-text-main)] font-bold text-lg sm:text-xl md:text-2xl tracking-tight block">
-                  Hoja de Vida
-                </span>
-                <p className="text-xs sm:text-sm text-[var(--color-text-sub)] font-medium">
-                  Inventario de equipos
-                </p>
-              </div>
-            </Link>
-
+             <Link to="/" className="flex items-center gap-2.5 text-slate-800 font-semibold text-lg group">
+                <LogoAnimado size={45} />
+                    <span className="text-[var(--color-text-main)] font-bold text-lg sm:text-xl md:text-2xl tracking-tight block">
+                       Inventario de equipos
+                    </span>
+              </Link>
+  
             {/* Navegación + Toggle de Tema */}
             <nav className="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
               {/* Toggle Modo Claro / Oscuro */}

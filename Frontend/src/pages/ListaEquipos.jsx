@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Search, Laptop, ChevronRight, Plus } from 'lucide-react';
 import api from '../services/api';
+import SearchInput from '../components/SearchInput';
+
 
 function ListaEquipos() {
   const [equipos, setEquipos] = useState([]);
@@ -74,13 +76,8 @@ function ListaEquipos() {
           <h1 className="fluid-title font-bold text-[var(--color-text-main)] tracking-tight">
             Inventario
           </h1>
-          <p className="fluid-subtitle text-[var(--color-text-sub)] mt-2 flex flex-wrap items-center gap-1.5">
-            <span className="text-blue-500 font-semibold">{equipos.length}</span> equipos
-            <span className="text-[var(--color-text-muted)]">·</span>
-            <span className="text-emerald-500 font-semibold">{totalAsignados}</span> en uso
-            <span className="text-[var(--color-text-muted)]">·</span>
-            <span className="text-amber-500 font-semibold">{totalBodega}</span> en bodega
-          </p>
+
+          
         </div>
       </div>
 
@@ -122,13 +119,10 @@ function ListaEquipos() {
 
         {/* Campo de Búsqueda Fluido */}
         <div className="relative w-full md:w-72 lg:w-80 shrink-0">
-          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--color-text-muted)] pointer-events-none" />
-          <input
-            type="text"
-            placeholder="Buscar por inventario, marca o modelo..."
+          <SearchInput
             value={busqueda}
             onChange={(e) => setBusqueda(e.target.value)}
-            className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-[var(--color-input-border)] bg-[var(--color-input-bg)] text-[var(--color-input-text)] text-xs sm:text-sm placeholder:text-[var(--color-text-muted)] focus:outline-none focus:ring-2 focus:ring-blue-500/40 focus:border-blue-500/60 shadow-sm transition-all duration-200"
+            placeholder="Buscar por inventario, marca o modelo..."
           />
         </div>
       </div>
