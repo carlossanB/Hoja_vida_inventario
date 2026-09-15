@@ -1,0 +1,168 @@
+@import "tailwindcss";
+
+/* =======================================================
+   SISTEMA DE DISEÑO — TECMOVIL GROUP S.A.S.
+   Paleta Corporativa Azul con Soporte Modo Oscuro / Claro
+   ======================================================= */
+
+:root,
+html.dark {
+  --color-bg:                 #0b1220;
+  --color-bg-header:          rgba(11, 18, 32, 0.85);
+  --color-surface:            #111c30;
+  --color-surface-card:       rgba(17, 28, 48, 0.75);
+  --color-surface-hover:      rgba(23, 37, 63, 0.90);
+  --color-surface-subtle:     rgba(255, 255, 255, 0.05);
+  --color-border:             rgba(255, 255, 255, 0.10);
+  --color-border-hover:       rgba(59, 130, 246, 0.45);
+  --color-text-main:          #f8fafc;
+  --color-text-sub:           #94a3b8;
+  --color-text-muted:         #64748b;
+  --color-primary:            #2563eb;
+  --color-primary-dark:       #1d4ed8;
+  --color-primary-light:      #3b82f6;
+  --color-accent:             #0ea5e9;
+  --color-input-bg:           rgba(2, 6, 23, 0.65);
+  --color-input-border:       rgba(255, 255, 255, 0.12);
+  --color-input-text:         #f8fafc;
+  --color-card-shadow:        0 10px 25px -5px rgba(0, 0, 0, 0.4), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
+  --color-bg-gradient-1:      rgba(29, 111, 216, 0.22);
+  --color-bg-gradient-2:      rgba(14, 165, 233, 0.12);
+}
+
+html.light {
+  --color-bg:                 #f1f5f9;
+  --color-bg-header:          rgba(255, 255, 255, 0.88);
+  --color-surface:            #ffffff;
+  --color-surface-card:       #ffffff;
+  --color-surface-hover:      #f8fafc;
+  --color-surface-subtle:     rgba(0, 0, 0, 0.04);
+  --color-border:             rgba(0, 0, 0, 0.09);
+  --color-border-hover:       rgba(37, 99, 235, 0.45);
+  --color-text-main:          #0f172a;
+  --color-text-sub:           #475569;
+  --color-text-muted:         #94a3b8;
+  --color-primary:            #2563eb;
+  --color-primary-dark:       #1d4ed8;
+  --color-primary-light:      #3b82f6;
+  --color-accent:             #0284c7;
+  --color-input-bg:           #ffffff;
+  --color-input-border:       #cbd5e1;
+  --color-input-text:         #0f172a;
+  --color-card-shadow:        0 4px 16px -2px rgba(0, 0, 0, 0.07), 0 2px 6px -1px rgba(0, 0, 0, 0.04);
+  --color-bg-gradient-1:      rgba(37, 99, 235, 0.08);
+  --color-bg-gradient-2:      rgba(14, 165, 233, 0.05);
+}
+
+/* Reset y tipografía global */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  background-color: var(--color-bg);
+  min-height: 100vh;
+  color: var(--color-text-main);
+  margin: 0;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Fondo decorativo corporativo suave */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(ellipse 80% 50% at 15% -10%,  var(--color-bg-gradient-1), transparent 60%),
+    radial-gradient(ellipse 60% 40% at 88%   5%,  var(--color-bg-gradient-2), transparent 55%),
+    var(--color-bg);
+  transition: background 0.3s ease;
+}
+
+/* Scrollbar personalizada */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--color-bg); }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--color-primary), var(--color-accent));
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, var(--color-primary-light), var(--color-accent));
+}
+
+/* =============================================
+   CLASES UTILITARIAS Y FLUIDAS
+   ============================================= */
+
+/* Tipografía fluida con clamp() */
+.fluid-title {
+  font-size: clamp(1.5rem, 2.2vw + 0.75rem, 2.35rem);
+  line-height: 1.2;
+}
+
+.fluid-subtitle {
+  font-size: clamp(0.85rem, 0.5vw + 0.75rem, 1rem);
+}
+
+/* Grid de tarjetas auto-fit/minmax */
+.fluid-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: clamp(1rem, 1.75vw, 1.5rem);
+}
+
+@media (minmax: 1536px) {
+  .fluid-cards-grid {
+    grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+  }
+}
+
+/* Tarjeta con soporte dual dark/light y micro-animación */
+.app-card {
+  background-color: var(--color-surface-card);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--color-card-shadow);
+  border-radius: 1rem;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+              background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.app-card-interactive:hover {
+  transform: translateY(-3px) scale(1.008);
+  border-color: var(--color-border-hover);
+  box-shadow: 0 16px 30px -6px rgba(37, 99, 235, 0.18), var(--color-card-shadow);
+}
+
+.app-card-interactive:active {
+  transform: translateY(-1px) scale(1.002);
+}
+
+/* Input universal adaptado a tema */
+.app-input {
+  width: 100%;
+  padding: 0.65rem 0.95rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--color-input-border);
+  background-color: var(--color-input-bg);
+  color: var(--color-input-text);
+  font-size: 0.875rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.app-input::placeholder {
+  color: var(--color-text-muted);
+}
+
+.app-input:focus {
+  outline: none;
+  border-color: var(--color-primary-light);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.25);
+}
+
+.app-input option {
+  background-color: var(--color-surface);
+  color: var(--color-text-main);
+}
